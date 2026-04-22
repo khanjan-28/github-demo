@@ -1,0 +1,64 @@
+// Button interaction
+function changeText() {
+  document.getElementById("text").innerText = "🔥 Welcome to the Future!";
+}
+
+/* PARTICLES SYSTEM */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particlesArray = [];
+
+// Particle class
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 3;
+    this.speedX = Math.random() * 1 - 0.5;
+    this.speedY = Math.random() * 1 - 0.5;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+  }
+
+  draw() {
+    ctx.fillStyle = "#0d6efd";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// init particles
+function init() {
+  for (let i = 0; i < 120; i++) {
+    particlesArray.push(new Particle());
+  }
+}
+
+// animate
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particlesArray.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+// resize fix
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
