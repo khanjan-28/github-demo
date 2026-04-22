@@ -13,8 +13,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages   # ✅ THIS FIXES YOUR ERROR
+
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Pages
@@ -25,5 +28,5 @@ jobs:
         with:
           path: .
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: actions/deploy-pages@v4
