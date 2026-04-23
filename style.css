@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  color: white;
+}
+
+/* Particle canvas */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* 3D Scene */
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 800px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 8s infinite linear;
+}
+
+@keyframes rotate {
+  from { transform: rotateX(0) rotateY(0); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Cube faces */
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(0, 123, 255, 0.2);
+  border: 2px solid #0d6efd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  text-shadow: 0 0 10px #0d6efd;
+}
+
+.front  { transform: rotateY(0deg) translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+/* Content */
+.content {
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: #0d6efd;
+  text-shadow: 0 0 20px #0d6efd;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #0d6efd, #00c6ff);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px #0d6efd;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
